@@ -1,20 +1,28 @@
 <script>
+import { ref } from "vue";
 export default {
-  data() {
-    return {
-      count: 0,
-    };
-  },
-  methods: {
-    increment() {
-      this.count++;
-    },
-    decrement() {
-      this.count--;
-    },
-    reset() {
-      this.count = 0;
-    },
+  setup() {
+    const count = ref(0);
+
+    function increment() {
+      count.value++;
+    }
+
+    function decrement() {
+      count.value--;
+    }
+    function decrement5() {
+      count.value -= 5;
+    }
+    function incrementt5() {
+      count.value += 5;
+    }
+
+    function reset() {
+      count.value = 0;
+    }
+
+    return { count, increment, decrement, reset, decrement5, incrementt5 };
   },
 };
 </script>
@@ -28,6 +36,10 @@ export default {
         <button @click="increment" id="increment">+</button>
         <button @click="decrement" id="decrement">-</button>
         <button @click="reset" id="reset">Reset</button>
+      </div>
+      <div class="btn-group">
+        <button @click="incrementt5" id="decrement">+5</button>
+        <button @click="decrement5" id="decrement">-5</button>
       </div>
     </div>
   </main>
@@ -53,6 +65,12 @@ button {
   cursor: pointer;
   border-radius: 4px;
   color: #ffffff;
+}
+.btn-group {
+  display: flex;
+  justify-content: center; /* biar tombol rata tengah */
+  gap: 10px; /* jarak antar tombol */
+  margin: 10px 0; /* jarak antar grup */
 }
 
 button:hover {
