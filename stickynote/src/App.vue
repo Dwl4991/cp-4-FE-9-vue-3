@@ -2,9 +2,31 @@
 import { ref } from "vue";
 const showForm = ref(false);
 const newMemo = ref("");
+const memos = ref([]);
+const errormessage = ref("");
+
+function addMemo() {
+  if (!newMemo.value) {
+    errormessage.value = "Please enter a memo";
+    return;
+  }
+  memos.value.push({
+    id: Date.now(),
+    memo: newMemo.value,
+    date: new Date().toLocaleDateString("en-GB"),
+    backgroundColor: getRandomColor(),
+  });
+  newMemo.value = "";
+  showForm.value = false;
+}
+
+function getRandomColor() {
+  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+}
 </script>
 
 <template>
+  {{ memos }}
   <main>
     <div class="container">
       <header>
@@ -12,12 +34,16 @@ const newMemo = ref("");
         <button @click="showForm = true" class="header-button">+</button>
       </header>
       <div class="card-container">
-        <div class="card">
+        <div
+          v-for="(memo, index) in memos"
+          class="card"
+          :key="index"
+          :style="{ backgroundColor: memo.backgroundColor }"
+        >
           <p class="card-content">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos beatae
-            dolorum nisi magnam officiis, quasi voluptate ab? Rem, quis commodi!
+            {{ memo.memo }}
           </p>
-          <p class="card-date">12/12/25</p>
+          <p class="card-date">{{ memo.date }}</p>
         </div>
       </div>
     </div>
@@ -26,7 +52,7 @@ const newMemo = ref("");
         <button @click="showForm = false" class="form-close-button">
           &times;
         </button>
-
+        <p v-if="errormessage" class="form-error">{{ errormessage }}</p>
         <textarea
           v-model="newMemo"
           name="memo"
@@ -34,7 +60,7 @@ const newMemo = ref("");
           cols="30"
           rows="10"
         ></textarea>
-        <button class="form-save-button">save</button>
+        <button @click="addMemo" class="form-save-button">save</button>
       </div>
     </div>
   </main>
@@ -43,7 +69,7 @@ const newMemo = ref("");
 <style scoped>
 main {
   height: 100vh;
-  widows: 100vw;
+  width: 100vw;
 }
 
 .container {
@@ -136,5 +162,9 @@ header {
   border: none;
   font-size: 30px;
   cursor: pointer;
+}
+.form-error {
+  color: red;
+  margin-bottom: 10px;
 }
 </style>
