@@ -20,6 +20,10 @@ function addMemo() {
   showForm.value = false;
 }
 
+function deleteMemo(id) {
+  memos.value = memos.value.filter((memo) => memo.id !== id);
+}
+
 function getRandomColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
@@ -34,32 +38,22 @@ function getRandomColor() {
         <button @click="showForm = true" class="header-button">+</button>
       </header>
       <div class="card-container">
-        <div
-          v-for="(memo, index) in memos"
-          class="card"
-          :key="index"
-          :style="{ backgroundColor: memo.backgroundColor }"
-        >
+        <div v-for="(memo, index) in memos" class="card" :key="index" :style="{ backgroundColor: memo.backgroundColor }">
           <p class="card-content">
             {{ memo.memo }}
           </p>
-          <p class="card-date">{{ memo.date }}</p>
+          <div class="card-footer">
+            <p class="card-date">{{ memo.date }}</p>
+            <button @click="deleteMemo(memo.id)" class="card-button">x</button>
+          </div>
         </div>
       </div>
     </div>
     <div v-if="showForm" class="form-overlay">
       <div class="form-modal">
-        <button @click="showForm = false" class="form-close-button">
-          &times;
-        </button>
+        <button @click="showForm = false" class="form-close-button">&times;</button>
         <p v-if="errormessage" class="form-error">{{ errormessage }}</p>
-        <textarea
-          v-model="newMemo"
-          name="memo"
-          id="memo"
-          cols="30"
-          rows="10"
-        ></textarea>
+        <textarea v-model="newMemo" name="memo" id="memo" cols="30" rows="10"></textarea>
         <button @click="addMemo" class="form-save-button">save</button>
       </div>
     </div>
@@ -114,6 +108,12 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .form-overlay {
