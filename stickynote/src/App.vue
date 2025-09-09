@@ -38,7 +38,12 @@ function getRandomColor() {
         <button @click="showForm = true" class="header-button">+</button>
       </header>
       <div class="card-container">
-        <div v-for="(memo, index) in memos" class="card" :key="index" :style="{ backgroundColor: memo.backgroundColor }">
+        <div
+          v-for="(memo, index) in memos"
+          class="card"
+          :key="index"
+          :style="{ backgroundColor: memo.backgroundColor }"
+        >
           <p class="card-content">
             {{ memo.memo }}
           </p>
@@ -51,9 +56,17 @@ function getRandomColor() {
     </div>
     <div v-if="showForm" class="form-overlay">
       <div class="form-modal">
-        <button @click="showForm = false" class="form-close-button">&times;</button>
+        <button @click="showForm = false" class="form-close-button">
+          &times;
+        </button>
         <p v-if="errormessage" class="form-error">{{ errormessage }}</p>
-        <textarea v-model="newMemo" name="memo" id="memo" cols="30" rows="10"></textarea>
+        <textarea
+          v-model="newMemo"
+          name="memo"
+          id="memo"
+          cols="30"
+          rows="10"
+        ></textarea>
         <button @click="addMemo" class="form-save-button">save</button>
       </div>
     </div>
@@ -109,8 +122,7 @@ header {
   flex-direction: column;
   justify-content: space-between;
 }
-
-.card-footer {
+card-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
