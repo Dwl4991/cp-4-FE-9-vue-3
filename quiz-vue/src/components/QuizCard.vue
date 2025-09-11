@@ -1,12 +1,13 @@
+<script setup>
+const { quiz } = defineProps(["quiz"]);
+</script>
+
 <template>
   <div class="card">
-    <img
-      src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-      alt="quiz.title"
-    />
+    <img :src="quiz.img" :alt="quiz.title" />
     <div class="card-body">
-      <h2>Programing</h2>
-      <p>2 Questions</p>
+      <h2>{{ quiz.title }}</h2>
+      <p>{{ quiz.questions.length }} Questions</p>
     </div>
   </div>
 </template>

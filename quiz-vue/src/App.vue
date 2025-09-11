@@ -34,7 +34,7 @@ watch(search, () => {
           <p>{{ quiz.questions.length }} Questions</p>
         </div>
       </div> -->
-      <QuizCard v-for="quiz in quizes" :key="quiz.id" />
+      <QuizCard v-for="quiz in quizes" :key="quiz.id" :quiz="quiz" />
     </section>
   </main>
 </template>
