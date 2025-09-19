@@ -25,7 +25,7 @@ div {
   color: white;
   background-color: red;
   padding: 5px 10px;
-  border-radisus: 5px;
+  border-radius: 5px;
   text-decoration: none;
 }
 </style>
