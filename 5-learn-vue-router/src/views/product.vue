@@ -1,17 +1,24 @@
 <script setup>
-import { useRoute } from "vue-router";
+import { useRoute, useRouter, RouterView } from "vue-router";
 import products from "../data/products.json";
 
 const route = useRoute();
-const product = products.find(
-  (product) => product.id === parseInt(route.params.id)
-);
+const routers = useRouter();
+const productId = parseInt(route.params.id);
+const product = products.find((product) => product.id === productId);
+function showOwner() {
+  routers.push({ name: "owner", params: { id: productId } });
+}
 </script>
 
 <template>
   <div>
-    <h1>Producit</h1>
-    <h2>{{ product.name }} - {{ product.price }}</h2>
-    <p>Year: {{ product.year }}</p>
+    <h1>Product</h1>
+    <div>
+      <h2>{{ product.name }} - {{ product.price }}</h2>
+      <p>Year: {{ product.year }}</p>
+    </div>
+    <button @click="showOwner">Show Owner</button>
+    <RouterView />
   </div>
 </template>

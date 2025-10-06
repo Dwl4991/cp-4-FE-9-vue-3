@@ -8,7 +8,7 @@ const { owner } = products.find((p) => p.id === parseInt(route.params.id));
 <template>
   <div>
     <h1>Owner</h1>
-    <h2>{{ owner.name }} - {{ owner.price }}</h2>
-    <p>Year: {{ owner.year }}</p>
+    <p>{{ owner.name }}</p>
+    <p>{{ owner.email }}</p>
   </div>
 </template>
