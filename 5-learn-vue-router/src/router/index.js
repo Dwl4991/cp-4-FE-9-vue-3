@@ -9,6 +9,10 @@ const router = createRouter({
       component: () => import("../views/home.vue"),
     },
     {
+      path: "/home",
+      redirect: "/",
+    },
+    {
       path: "/product/:id",
       name: "product",
       component: () => import("../views/product.vue"),
@@ -24,6 +28,11 @@ const router = createRouter({
       path: "/about",
       name: "about",
       component: () => import("../views/about.vue"),
+    },
+    {
+      path: "/:catchall(.*)*",
+      name: "404",
+      component: () => import("../views/errors/404.vue"),
     },
   ],
 });
