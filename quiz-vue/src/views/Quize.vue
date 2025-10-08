@@ -19,27 +19,20 @@ watch(search, () => {
   <main>
     <header>
       <h1 class="header-title" id="title">Quiz-Vue</h1>
-      <input v-model.trim="search" type="text" id="search-input" placeholder="Search..." />
+      <input
+        v-model.trim="search"
+        type="text"
+        id="search-input"
+        placeholder="Search..."
+      />
     </header>
     <section id="quiz-container">
-      <!-- <div v-for="quiz in quizes" :key="quiz.id" class="card">
-        <img :src="quiz.img" :alt="quiz.title" />
-        <div class="card-body">
-          <h2>{{ quiz.title }}</h2>
-          <p>{{ quiz.questions.length }} Questions</p>
-        </div>
-      </div> -->
       <QuizCard v-for="quiz in quizes" :key="quiz.id" :quiz="quiz" />
     </section>
   </main>
 </template>
 
 <style scoped>
-main {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
 header {
   margin-top: 30px;
   margin-bottom: 10px;

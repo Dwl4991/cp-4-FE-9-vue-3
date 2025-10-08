@@ -8,7 +8,11 @@ const router = createRouter({
       name: "quize",
       component: () => import("../views/Quize.vue"),
     },
-    {},
+    {
+      path: "/quiz/:id",
+      name: "quiz",
+      component: () => import("../views/Quiz.vue"),
+    },
   ],
 });
 
