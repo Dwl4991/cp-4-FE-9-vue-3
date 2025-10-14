@@ -14,9 +14,8 @@ const questionPage = computed(() => {
   return `${currentQuestionIndex.value + 1}/${quiz.questions.length}`;
 });
 const barPercentage = computed(() => {
-  return (
-    ((currentQuestionIndex.value + 1) / quiz.questions.length) * 100 + "%"}
-  );
+  return `${((currentQuestionIndex.value + 1) / quiz.questions.length) * 100}%`;
+});
 </script>
 <template>
   <QuizHeader :questionPage="questionPage" :barPercentage="barPercentage" />
